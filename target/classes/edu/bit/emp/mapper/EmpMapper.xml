@@ -9,35 +9,32 @@
 		select * from emp
 	]]>
 	</select>
-	<!-- 
-	<select id="read" resultType="edu.bit.board.vo.BoardVO">
+	<!-- 결과를 매핑시킨다는 말 -->
+	<!-- EmpVO를 거쳐서 객체를 생성시킨다 -->
+	<resultMap id="Emp" type="edu.bit.emp.vo.EmpVO">
+		<id property="empno" column="empno"/><!-- 컬럼은 실제 컬럼명, property는 변수이름, id는 식별할 수 있는 key -->
+		<result property="ename" column="ename"/>
+		<result property="job" column="job"/>
+		<result property="mgr" column="mgr"/>
+		<result property="hiredate" column="hiredate"/>
+		<result property="sal" column="sal"/>
+		<result property="comm" column="comm"/>
+		<result property="deptno" column="deptno"/>
+		
+	</resultMap>
+	
+	
+	<resultMap id="DeptEmp" type="edu.bit.emp.vo.DeptEmpVO">
+		<id property="deptno" column="deptno"/><!-- 컬럼은 실제 컬럼명, property는 변수이름, id는 식별할 수 있는 key -->
+		<result property="dname" column="dname"/>
+		<result property="loc" column="loc"/>
+		<collection property="empList" javaType="java.util.ArrayList" resultMap="Emp"/><!-- resultmap id를 집어넣는다. -->
+		<!-- 1:1관계일때는 association, 1:N 관계일 때는 Collection-->
+	</resultMap>
+	
+	<select id="selectDeptEmp" parameterType="int" resultMap="DeptEmp">
 	<![CDATA[
-		select * from mvc_board where bId = #{bId}
+		select * from emp e, dept d where e.deptno = d.deptno and d.deptno= #{deptno}
 	]]>
 	</select>
-	
-	<insert id="insertBoard" >
-	<![CDATA[
-		insert into mvc_board (bId, bName, bTitle, bContent, bHit, bGroup, bStep, bIndent) values (mvc_board_seq.nextval, #{bName}, #{bTitle}, #{bContent}, 0, mvc_board_seq.currval, 0, 0)
-	]]>
-	</insert>
- 
-	<update id="updateShape" >
-	<![CDATA[
-		update mvc_board set bStep = bStep + 1 where bGroup = #{boardVO.bGroup} and bStep > #{boardVO.bStep}
-	]]>
-	</update>
-	
-	<insert id="insertReply" >
-	<![CDATA[
-		insert into mvc_board (bId, bName, bTitle, bContent, bGroup, bStep, bIndent) values (mvc_board_seq.nextval, #{bName}, #{bTitle},#{bContent}, #{bGroup}, #{bStep}+1, #{bIndent}+1)
-	]]>
-	</insert>
-	
-	<insert id="modify" >
-	<![CDATA[
-		update mvc_board set bName=#{boardVO.bName}, bTitle=#{boardVO.bTitle}, bContent=#{boardVO.bContent} where bId=#{boardVO.bId}
-	]]>
-	</insert>
- -->
- </mapper>
+</mapper>

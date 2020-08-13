@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import edu.bit.emp.mapper.EmpMapper;
+import edu.bit.emp.vo.DeptEmpVO;
 import edu.bit.emp.vo.EmpVO;
 import lombok.AllArgsConstructor;
 
@@ -20,6 +21,20 @@ public class EmpServiceImpl implements EmpService{
 		// TODO Auto-generated method stub
 		return empMapper.getList();
 	}
+
+	@Override
+	public DeptEmpVO deptEmpList(int deptno) {
+		// TODO Auto-generated method stub
+		return empMapper.selectDeptEmp(deptno);
+		
+	}
+
+	
+
+	
+	
+
+	
 	
 	
 

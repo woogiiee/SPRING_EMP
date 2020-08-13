@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>edu.bit</groupId>
 	<artifactId>emp</artifactId>
-	<name>spring_board_mapper_with_spring_5</name>
+	<name>spring_emp_with_TC</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	
